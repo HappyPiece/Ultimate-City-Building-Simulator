@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator.Game.TransactionTypes
 {
-    internal class SetBalanceTransaction: Transaction
+    internal class GetBalanceTransaction : Transaction
     {
-        public SetBalanceTransaction(Guid guid, int value = 0) : base(guid, value) { }
+        public GetBalanceTransaction(Guid guid, int value = 0) : base(guid, value) { }
     }
 }

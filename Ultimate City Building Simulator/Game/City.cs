@@ -13,8 +13,10 @@ namespace UltimateCityBuildingSimulator.Game
         public City(Player player)
         {
             PlayerTransactionProcessorTerminal = player.GetTransactionProcessor().GetTransactionProcessorTerminal();
-            PlayerTransactionProcessorTerminal.SendTransaction(new SetBalanceTransaction(100));
-            PlayerTransactionProcessorTerminal.SendTransaction(new AlterBalanceTransaction(-30));
+            PlayerTransactionProcessorTerminal.SetTransaction(100);
+            Console.WriteLine(PlayerTransactionProcessorTerminal.GetTransaction());
+            PlayerTransactionProcessorTerminal.AlterTransaction(-30);
+            Console.WriteLine(PlayerTransactionProcessorTerminal.GetTransaction());
         }
 
     }

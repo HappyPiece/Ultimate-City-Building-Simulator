@@ -11,8 +11,8 @@ namespace UltimateCityBuildingSimulator
     internal class Application
     {
         private bool IsRunning;
-        private Player Player;
-        private City City;
+        public Player Player { get; private set; }
+        public City City { get; private set; }
         ConsoleCommandManager ConsoleManager;
         public Application()
         {

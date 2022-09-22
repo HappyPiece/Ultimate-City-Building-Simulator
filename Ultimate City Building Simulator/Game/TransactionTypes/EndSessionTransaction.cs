@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator.Game.TransactionTypes
 {
-    public interface ITransaction
+    internal class EndSessionTransaction : Transaction
     {
-        int getValue();
+        public EndSessionTransaction(Guid guid, int value = 0) : base(guid, value) { }
     }
 }

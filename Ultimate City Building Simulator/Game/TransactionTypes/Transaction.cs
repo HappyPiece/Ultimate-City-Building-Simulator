@@ -6,21 +6,24 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator.Game.TransactionTypes
 {
-    public class Transaction: ITransaction
+    public class Transaction
     {
-        protected int Value;
-        public int getValue()
+        public int Value { get; protected set; }
+        public Guid TerminalGuid { get; private set; }
+        public int GetValue()
         {
             return Value;
         }
 
-        public Transaction(int value)
+        public Guid GetTerminalGuid()
         {
-            Value = value;
+            return TerminalGuid;
         }
-        public Transaction()
+
+        public Transaction(Guid guid, int value = 0)
         {
-            Value = 0;
+            TerminalGuid = guid;
+            Value = value;
         }
     }
 }
