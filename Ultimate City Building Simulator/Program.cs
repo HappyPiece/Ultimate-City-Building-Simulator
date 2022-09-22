@@ -4,7 +4,8 @@
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("cringe");
+            Application app = new Application();
+            app.Start();
         }
     }
 }

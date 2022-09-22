@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator
 {
-    internal interface ICommand
+    internal interface IConsoleCommand
     {
-
+        string GetCommandName();
+        string GetCommandHelp();
+        bool Process(string[] args);
     }
 }
