@@ -8,6 +8,8 @@ namespace UltimateCityBuildingSimulator
 {
     internal interface IInputReader
     {
+        //void Start();
         string GetInput();
+        //void Stop();
     }
 }

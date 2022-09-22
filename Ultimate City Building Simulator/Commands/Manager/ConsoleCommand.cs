@@ -9,10 +9,10 @@ namespace UltimateCityBuildingSimulator
     public abstract class ConsoleCommand : IConsoleCommand
     {
         protected string commandWord = string.Empty;
-        private string help = string.Empty;
+        protected string help = string.Empty;
         public string GetCommandName() { return commandWord; }
-        public string GetCommandHelp() { return help; }
+        public string GetCommandHelp() { return help + "\n"; }
 
-        public abstract bool Process(string[] args);        
+        public abstract bool Process(string[] args);
     }
 }

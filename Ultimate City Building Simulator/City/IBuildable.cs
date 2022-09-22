@@ -8,9 +8,9 @@ namespace UltimateCityBuildingSimulator
 {
     internal interface  IBuildable
     {
-        bool checkRequirement();
-        bool buildSelf();
-        bool demolishSelf();
-        bool provideCost();
+        bool CheckRequirement();
+        bool BuildSelf();
+        bool DemolishSelf();
+        bool ProvideCost();
     }
 }
