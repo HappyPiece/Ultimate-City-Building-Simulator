@@ -10,11 +10,6 @@ namespace UltimateCityBuildingSimulator
     {
         private readonly IEnumerable<IConsoleCommand> commands;
 
-        public ConsoleCommandProcessor()
-        {
-            commands = new List<IConsoleCommand>();
-        }
-
         public ConsoleCommandProcessor(IEnumerable<IConsoleCommand> commands)
         {
             this.commands = commands;
@@ -33,6 +28,7 @@ namespace UltimateCityBuildingSimulator
         {
             foreach (var command in commands)
             {
+                //Console.WriteLine(command.GetCommandName() + " " + commandInfo.Name);
                 if (!commandInfo.Name.Equals(command.GetCommandName(), StringComparison.OrdinalIgnoreCase))
                 {
                     continue;

@@ -3,41 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UltimateCityBuildingSimulator.Commands.Manager;
 using UltimateCityBuildingSimulator.Game;
-using static UltimateCityBuildingSimulator.ConsoleCommandProcessor;
 
 namespace UltimateCityBuildingSimulator
 {
     internal class Application
     {
         private bool IsRunning;
-        private Thread Thread;
-        private ConsoleCommandProcessor Processor;
-        private IInputReader InputReader;
-        private City City;
         private Player Player;
+        private City City;
+        ConsoleCommandManager ConsoleManager;
         public Application()
         {
-            Thread = new Thread(Update);
-            Processor = new ConsoleCommandProcessor();
-            InputReader = new ConsoleInputReader();
+            ConsoleManager = new ConsoleCommandManager(this);
             Player = new Player();
             City = new City(Player);
+        }
+        public void Start()
+        {
+            IsRunning = true;
+            ConsoleManager.StartCommandProcessing();
+            Update();
+        }
+
+        public void Quit()
+        {
+            Console.WriteLine("Quitting");
+            IsRunning = false;
+            ConsoleManager.StopCommandProcessing();
         }
         private void Update()
         {
             while (IsRunning)
             {
-                var input = InputReader.GetInput();
-                CommandInfo commandInfo = Processor.ProcessInput(input);
-                Processor.ProcessCommand(commandInfo);
+                //City.Update();
+                Thread.Sleep(1000);
             }
-        }
-
-        public void Start()
-        {
-            IsRunning = true;
-            Thread.Start();
         }
     }
 

@@ -23,6 +23,7 @@ namespace UltimateCityBuildingSimulator.Game
                 default:
                     return false;
             }
+            Console.WriteLine(balance.ToString());
             return true;
         }
 

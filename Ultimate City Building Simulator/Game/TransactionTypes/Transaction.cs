@@ -8,7 +8,7 @@ namespace UltimateCityBuildingSimulator.Game.TransactionTypes
 {
     public class Transaction: ITransaction
     {
-        private int Value;
+        protected int Value;
         public int getValue()
         {
             return Value;

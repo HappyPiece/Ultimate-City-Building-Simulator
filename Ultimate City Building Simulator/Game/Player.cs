@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator.Game
 {
-    internal class Player
+    public class Player
     {
         private ITransactionProcessor PlayerTransactionProcessor = new TransactionProcessor();
 
@@ -14,5 +14,6 @@ namespace UltimateCityBuildingSimulator.Game
         {
             return PlayerTransactionProcessor;
         }
+
     }
 }

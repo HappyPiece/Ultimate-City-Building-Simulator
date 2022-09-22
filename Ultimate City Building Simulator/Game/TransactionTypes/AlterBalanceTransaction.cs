@@ -8,6 +8,9 @@ namespace UltimateCityBuildingSimulator.Game.TransactionTypes
 {
     internal class AlterBalanceTransaction : Transaction
     {
-
+        public AlterBalanceTransaction(int value)
+        {
+            Value = value;
+        }
     }
 }
