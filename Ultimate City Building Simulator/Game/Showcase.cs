@@ -13,16 +13,16 @@ namespace UltimateCityBuildingSimulator.Game
 {
     public class Showcase
     {
-        private List<IBuildable> BuildingsList;
-        public ReadOnlyCollection<IBuildable> BuildingsShowcase; 
-        Showcase()
+        public ReadOnlyCollection<IBuildable> BuildingsShowcase;
+        public Showcase()
         {
-            BuildingsList = new List<IBuildable>();
+            List<IBuildable> BuildingsList = new List<IBuildable>();
+            BuildingsList.Add(new Shop());
             BuildingsList.Add(new Factory());
             BuildingsList.Add(new Office());
             BuildingsList.Add(new Hospital());
-            BuildingsList.Add(new PoliceStation());
             BuildingsList.Add(new School());
+            BuildingsList.Add(new PoliceStation());
             BuildingsList.Add(new SmallHouse());
             BuildingsList.Add(new MediumHouse());
             BuildingsList.Add(new LargeHouse());

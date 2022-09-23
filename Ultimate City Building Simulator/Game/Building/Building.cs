@@ -19,6 +19,10 @@ namespace UltimateCityBuildingSimulator.Game.Building
         {
             return Multiplier;
         }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
 
     }
 }

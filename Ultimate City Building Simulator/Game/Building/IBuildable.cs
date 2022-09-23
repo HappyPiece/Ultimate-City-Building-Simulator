@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator.Game.Building
 {
-    public interface IBuildable
+    public interface IBuildable : ICloneable
     {
         int ProvideCost();
         int ProvideMultiplier();

@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UltimateCityBuildingSimulator.Commands.Manager;
 
 namespace UltimateCityBuildingSimulator.Commands
 {
     internal class Quit : ConsoleCommand
     {
-        Application application;
-        public Quit(Application app)
+        public Quit(ConsoleCommandManager manager) : base(manager)
         {
-            commandWord = "quit";
-            help = "Use: quit - quits the application";
-            application = app;
+            CommandWord = "quit";
+            Help = "Use: quit - quits the application";
         }
         public override bool Process(string[] args)
         {
             if (args.Length != 0) return false;
-            application.Quit();
+            ParentManager.ParentApplication.Quit();
             return true;
         }
     }

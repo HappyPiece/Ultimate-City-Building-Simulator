@@ -8,7 +8,7 @@ using UltimateCityBuildingSimulator.Game;
 
 namespace UltimateCityBuildingSimulator
 {
-    internal class Application
+    public class Application
     {
         private bool IsRunning;
         private Thread UpdateThread;

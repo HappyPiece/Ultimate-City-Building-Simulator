@@ -8,25 +8,24 @@ namespace UltimateCityBuildingSimulator
 {
     internal class ConsoleCommandProcessor
     {
-        private readonly IEnumerable<IConsoleCommand> commands;
+        private readonly IEnumerable<IConsoleCommand> Commands;
 
         public ConsoleCommandProcessor(IEnumerable<IConsoleCommand> commands)
         {
-            this.commands = commands;
+            this.Commands = commands;
         }
 
         public CommandInfo ProcessInput(string inputValue)
         {
-            string[] inputSplit = inputValue.Split(' ');
+            string[] inputSplit = inputValue.TrimEnd().Split(' ');
             string commandInput = inputSplit[0];
             string[] args = inputSplit.Skip(1).ToArray();
-
             return new CommandInfo(commandInput, args);
         }
 
         public void ProcessCommand(CommandInfo commandInfo)
         {
-            foreach (var command in commands)
+            foreach (var command in Commands)
             {
                 //Console.WriteLine(command.GetCommandName() + " " + commandInfo.Name);
                 if (!commandInfo.Name.Equals(command.GetCommandName(), StringComparison.OrdinalIgnoreCase))
