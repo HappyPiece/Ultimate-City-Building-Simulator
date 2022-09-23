@@ -34,10 +34,12 @@ namespace UltimateCityBuildingSimulator
                     continue;
                 }
 
-                if (command.Process(commandInfo.Arguments))
+                if (!command.Process(commandInfo.Arguments))
                 {
-                    return;
+                    Console.WriteLine(command.GetCommandHelp());
                 }
+
+                return;
             }
             Console.WriteLine("Unrecognised command " + commandInfo.Name);
         }

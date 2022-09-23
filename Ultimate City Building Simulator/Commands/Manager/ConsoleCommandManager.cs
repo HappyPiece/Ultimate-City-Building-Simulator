@@ -12,17 +12,18 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         private ConsoleCommandProcessor Processor;
         private List<ConsoleCommand> Commands;
         private IInputReader InputReader;
-        private Thread Thread;
+        private Thread InputProcessingThread;
         private bool IsRunning;
         public ConsoleCommandManager(Application app)
         {
             InputReader = new ConsoleInputReader();
-            Thread = new Thread(Update);
+            InputProcessingThread = new Thread(Update);
             Commands = new List<ConsoleCommand>();
 
             //Initialise all commands
             Commands.Add(new Quit(app));
             Commands.Add(new Print());
+            Commands.Add(new Show());
 
             //Feed to processor
             Processor = new ConsoleCommandProcessor(Commands);
@@ -30,7 +31,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         }
         ~ConsoleCommandManager()
         {
-            Thread.Join();
+            InputProcessingThread.Join();
         }
         public void ProcessInput(string input)
         {
@@ -41,7 +42,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         public void StartCommandProcessing()
         {
             IsRunning = true;
-            Thread.Start();
+            InputProcessingThread.Start();
         }
         public void StopCommandProcessing()
         {
