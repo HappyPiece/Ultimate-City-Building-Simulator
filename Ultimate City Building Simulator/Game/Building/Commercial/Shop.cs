@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator.Game.Building.Commercial
 {
-    internal class Shop
+    internal class Shop : Commercial
     {
     }
 }
