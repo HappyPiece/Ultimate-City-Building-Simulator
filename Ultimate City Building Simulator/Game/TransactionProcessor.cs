@@ -49,8 +49,15 @@ namespace UltimateCityBuildingSimulator.Game
                 case AlterBalanceTransaction:
                     if ((TerminalsPermissions[transaction.TerminalGuid] & (int)Permissions.ALTER) != 0)
                     {
-                        balance += transaction.Value;
-                        state = TransactionState.OPERATION_SUCCESSFUL;
+                        if (balance + transaction.Value >= 0)
+                        {
+                            balance += transaction.Value;
+                            state = TransactionState.OPERATION_SUCCESSFUL;
+                        }
+                        else
+                        {
+                            state = TransactionState.INTERNAL_ERROR;
+                        }
                     }
                     else
                     {

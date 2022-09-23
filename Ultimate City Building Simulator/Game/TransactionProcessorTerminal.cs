@@ -12,22 +12,28 @@ namespace UltimateCityBuildingSimulator.Game
     {
         ITransactionProcessor ParentalProcessor;
         public Guid Guid { get; private set; }
-        public void AlterTransaction(int value)
+        public bool AlterTransaction(int value)
         {
             ParentalProcessor.PerformTransaction(new AlterBalanceTransaction(Guid, value), out TransactionState state, out int result);
+            if (state == TransactionProcessor.TransactionState.OPERATION_SUCCESSFUL) return true;
+            return false;
         }
-        public void SetTransaction(int value)
+        public bool SetTransaction(int value)
         {
             ParentalProcessor.PerformTransaction(new SetBalanceTransaction(Guid, value), out TransactionState state, out int result);
+            if (state == TransactionProcessor.TransactionState.OPERATION_SUCCESSFUL) return true;
+            return false;
         }
         public int GetTransaction()
         {
             ParentalProcessor.PerformTransaction(new GetBalanceTransaction(Guid), out TransactionState state, out int result);
             return result;
         }
-        public void EndSession()
+        public bool EndSession()
         {
             ParentalProcessor.PerformTransaction(new EndSessionTransaction(Guid), out TransactionState state, out int result);
+            if (state == TransactionProcessor.TransactionState.OPERATION_SUCCESSFUL) return true;
+            return false;
         }
         public TransactionProcessorTerminal(ITransactionProcessor parentalProcessor, Guid guid)
         {

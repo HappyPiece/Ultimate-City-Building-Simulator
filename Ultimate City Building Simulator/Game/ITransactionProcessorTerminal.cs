@@ -10,9 +10,9 @@ namespace UltimateCityBuildingSimulator.Game
 {
     public interface ITransactionProcessorTerminal
     {
-        public void AlterTransaction(int value);
-        public void SetTransaction(int value);
+        public bool AlterTransaction(int value);
+        public bool SetTransaction(int value);
         public int GetTransaction();
-        public void EndSession();
+        public bool EndSession();
     }
 }
