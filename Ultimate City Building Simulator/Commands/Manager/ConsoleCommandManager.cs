@@ -8,15 +8,13 @@ using UltimateCityBuildingSimulator.Utility;
 
 namespace UltimateCityBuildingSimulator.Commands.Manager
 {
-    public class ConsoleCommandManager
+    public class ConsoleCommandManager : CommandManager
     {
         private ConsoleCommandProcessor Processor;
         private List<ConsoleCommand> Commands;
         private IInputReader InputReader;
         private Thread InputProcessingThread;
-        private bool IsRunning;
-        public Application ParentApplication { get; private set; }
-        public IBuildingCatalogueParser CatalogueParser { get; private set; }
+        private bool IsRunning;        
 
         public ConsoleCommandManager(Application app)
         {
@@ -41,18 +39,18 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
             InputProcessingThread.Join();
         }
 
-        public void ProcessInput(string input)
+        public override void ProcessInput(string input)
         {
             CommandInfo commandInfo = Processor.ProcessInput(input);
             Processor.ProcessCommand(commandInfo);
         }
 
-        public void StartCommandProcessing()
+        public override void StartCommandProcessing()
         {
             IsRunning = true;
             InputProcessingThread.Start();
         }
-        public void StopCommandProcessing()
+        public override void StopCommandProcessing()
         {
             IsRunning = false;
         }

@@ -14,10 +14,10 @@ namespace UltimateCityBuildingSimulator
         private Thread UpdateThread;
         public Player Player { get; private set; }
         public City City { get; private set; }
-        ConsoleCommandManager ConsoleManager;
+        ICommandManager CommandManager;
         public Application()
         {
-            ConsoleManager = new ConsoleCommandManager(this);
+            CommandManager = new ConsoleCommandManager(this);
             Player = new Player();
             City = new City(Player);
             UpdateThread = new Thread(Update);
@@ -25,7 +25,7 @@ namespace UltimateCityBuildingSimulator
         public void Start()
         {
             IsRunning = true;
-            ConsoleManager.StartCommandProcessing();
+            CommandManager.StartCommandProcessing();
             UpdateThread.Start();
         }
 
@@ -33,7 +33,7 @@ namespace UltimateCityBuildingSimulator
         {
             Console.WriteLine("Quitting");
             IsRunning = false;
-            ConsoleManager.StopCommandProcessing();
+            CommandManager.StopCommandProcessing();
             UpdateThread.Join();
         }
         private void Update()
