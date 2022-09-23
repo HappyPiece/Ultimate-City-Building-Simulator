@@ -38,8 +38,8 @@ namespace UltimateCityBuildingSimulator.Game
             float resultingCostMultiplier = MathF.Pow(building.ProvideMultiplier(), buildingsOfTypeCount);
             int resultingCost = Convert.ToInt32(MathF.Round(resultingCostMultiplier * building.ProvideCost()));
 
-            Console.WriteLine("Calculated cost for building " + building.GetType().Name.ToString() + " : " + resultingCost);
-            Console.WriteLine("Already built: " + buildingsOfTypeCount);
+            //Console.WriteLine("Calculated cost for building " + building.GetType().Name.ToString() + " : " + resultingCost);
+            //Console.WriteLine("Already built: " + buildingsOfTypeCount);
             return resultingCost;
         }
 

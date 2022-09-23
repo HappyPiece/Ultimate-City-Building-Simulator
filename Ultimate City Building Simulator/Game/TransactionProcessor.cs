@@ -92,7 +92,7 @@ namespace UltimateCityBuildingSimulator.Game
 
         public TransactionProcessor()
         {
-            balance = 0;
+            balance = 30;
             TerminalsPermissions = new Dictionary<Guid, int>();
         }
     }

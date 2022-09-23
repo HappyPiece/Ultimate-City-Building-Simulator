@@ -8,6 +8,9 @@ namespace UltimateCityBuildingSimulator.Game.Building.Institutional
 {
     internal class PoliceStation : Institutional
     {
-
+        public PoliceStation() : base()
+        {
+            Cost = 70;
+        }
     }
 }

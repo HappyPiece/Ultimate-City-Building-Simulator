@@ -8,5 +8,9 @@ namespace UltimateCityBuildingSimulator.Game.Building.Commercial
 {
     internal class Shop : Commercial
     {
+        public Shop() : base()
+        {
+            Cost = 50;
+        }
     }
 }

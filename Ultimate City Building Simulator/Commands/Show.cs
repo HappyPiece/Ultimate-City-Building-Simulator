@@ -29,7 +29,15 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
                     Console.WriteLine(balance);
                     break;
                 case "map":
-                    Console.WriteLine("Map Showcase Not Implemented Yet");
+                    if (app.City.GetBuildings().Count() > 0)
+                    {
+                        foreach (var building in app.City.GetBuildings())
+                            Console.WriteLine(building.GetType().Name.ToString().ToLower());
+                    }
+                    else
+                    {
+                        Console.WriteLine("There are no building in the City");
+                    }
                     break;
                 case "stats":
                     Console.WriteLine("Stats");

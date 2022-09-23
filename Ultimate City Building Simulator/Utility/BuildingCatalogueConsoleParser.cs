@@ -14,7 +14,8 @@ namespace UltimateCityBuildingSimulator.Utility
             string output = String.Empty;
             foreach (var item in catalogue.GetList())
             {
-                output = string.Join("", output, item.Name, "\n");
+                output = string.Join("", output, "building name: ", item.Name,
+                    "\t", "current price: ", item.Price, "\n");
             }
             return output;
         }

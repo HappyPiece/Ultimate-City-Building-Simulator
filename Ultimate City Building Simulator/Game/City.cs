@@ -48,7 +48,7 @@ namespace UltimateCityBuildingSimulator.Game
         }
         public bool ChargePlayer(int amount)
         {
-            return PlayerTransactionProcessorTerminal.AlterTransaction(amount);
+            return PlayerTransactionProcessorTerminal.AlterTransaction(-1*amount);
         }
     }
 }

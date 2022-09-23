@@ -8,6 +8,9 @@ namespace UltimateCityBuildingSimulator.Game.Building.Institutional
 {
     internal class School : Institutional
     {
-       
+        public School() : base()
+        {
+            Cost = 170;
+        }
     }
 }

@@ -8,9 +8,9 @@ namespace UltimateCityBuildingSimulator.Game.Building.Commercial
 {
     internal class Factory : Commercial
     {
-        public Factory()
+        public Factory() : base()
         {
-            Cost = 170;
-        }        
+            Cost = 150;
+        }
     }
 }

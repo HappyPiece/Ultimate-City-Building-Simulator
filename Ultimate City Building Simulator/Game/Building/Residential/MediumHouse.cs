@@ -8,6 +8,9 @@ namespace UltimateCityBuildingSimulator.Game.Building.Residential
 {
     internal class MediumHouse : Residential
     {
-        
+        public MediumHouse() : base()
+        {
+            Cost = 90;
+        }
     }
 }
