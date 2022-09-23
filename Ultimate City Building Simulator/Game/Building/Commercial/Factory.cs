@@ -8,19 +8,9 @@ namespace UltimateCityBuildingSimulator.Game.Building.Commercial
 {
     internal class Factory : Commercial
     {
-        public override void BuildSelf()
+        public Factory()
         {
-            throw new NotImplementedException();
-        }
-
-        public override bool CheckRequirement()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void DemolishSelf()
-        {
-            throw new NotImplementedException();
-        }
+            Cost = 170;
+        }        
     }
 }

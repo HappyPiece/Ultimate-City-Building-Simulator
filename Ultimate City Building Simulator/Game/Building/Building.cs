@@ -8,17 +8,17 @@ namespace UltimateCityBuildingSimulator.Game.Building
 {
     public abstract class Building : IBuildable
     {
-        private int cost;
-
-        public abstract void BuildSelf();
-
-        public abstract bool CheckRequirement();
-
-        public abstract void DemolishSelf();
+        protected int Cost;
+        protected int Multiplier;
 
         public int ProvideCost()
         {
-            return cost;
+            return Cost;
         }
+        public int ProvideMultiplier()
+        {
+            return Multiplier;
+        }
+
     }
 }

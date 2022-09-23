@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator.Game.Building
 {
-    internal interface IBuildable
+    public interface IBuildable
     {
-        bool CheckRequirement();
-        void BuildSelf();
-        void DemolishSelf();
         int ProvideCost();
+        int ProvideMultiplier();
     }
 }
