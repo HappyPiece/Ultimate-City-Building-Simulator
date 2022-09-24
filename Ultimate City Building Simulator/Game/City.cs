@@ -10,14 +10,13 @@ using UltimateCityBuildingSimulator.Game.Building.Commercial;
 using UltimateCityBuildingSimulator.Game.Building.Residential;
 using UltimateCityBuildingSimulator.Game.Building.Institutional;
 
-namespace UltimateCityBuildingSimulator.Game // niggers
+namespace UltimateCityBuildingSimulator.Game
 {
     public class City
     {
         public int Capacity { get; private set; }
         public int Population { get; private set; }
         public float Happiness { get; private set; }
-
         private ITransactionProcessorTerminal PlayerTransactionProcessorTerminal;
         private Builder Builder;
 
@@ -51,7 +50,6 @@ namespace UltimateCityBuildingSimulator.Game // niggers
         {
             if (!Builder.RequestBuildingToBuild(buildable, out IBuildable building, out response)) return false;
             Buildings.Add(building);
-            UpdateCapacity();
             return true;
         }
         private void UpdateCapacity()
@@ -68,10 +66,13 @@ namespace UltimateCityBuildingSimulator.Game // niggers
         }
         private void UpdatePopulation()
         {
-            Population = Math.Min(Capacity, (int)(Happiness * 0.75F));
+            double PopulationMultiplier = 1;
+            PopulationMultiplier = (Happiness / (Capacity+10));
+            Population = Math.Clamp((int)(Capacity * PopulationMultiplier), 0, Capacity);
         }
-        private void UpdateHappiness() {
-            int CountedHappiness = 0;
+        private void UpdateHappiness()
+        {
+            int CountedHappiness = 10;
             foreach (var buildable in Buildings)
             {
                 if (buildable is Institutional)
@@ -81,9 +82,18 @@ namespace UltimateCityBuildingSimulator.Game // niggers
             }
             Happiness = CountedHappiness;
         }
-        public bool ChargePlayer(int amount)
+        private void GenerateIncome(double deltaTime)
         {
-            return PlayerTransactionProcessorTerminal.AlterTransaction(-1*amount);
+            float BasePopulationIncomeMultiplier = 0.5F;
+            int IncomePerSecond = (int)(BasePopulationIncomeMultiplier * Population);
+            foreach (var buildable in Buildings)
+            {
+                if (buildable is Commercial)
+                {
+                    IncomePerSecond += ((Commercial)buildable).Income;
+                }
+            }
+            PlayerTransactionProcessorTerminal.AlterTransaction((int)(IncomePerSecond * deltaTime));
         }
     }
 }

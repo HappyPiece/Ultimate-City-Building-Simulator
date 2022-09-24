@@ -45,7 +45,7 @@ namespace UltimateCityBuildingSimulator
         {
             while (IsRunning)
             {
-                City.Update(Timer.elapsed);
+                City.UpdateCity(Timer.elapsed);
                 Thread.Sleep(500);
                 Timer.NewTick();
             }
