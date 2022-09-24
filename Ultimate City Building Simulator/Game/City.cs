@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using UltimateCityBuildingSimulator.Game.TransactionTypes;
 using UltimateCityBuildingSimulator.Game.Building;
 using static UltimateCityBuildingSimulator.Game.Builder;
+using UltimateCityBuildingSimulator.Game.Building.Commercial;
+using UltimateCityBuildingSimulator.Game.Building.Residential;
+using UltimateCityBuildingSimulator.Game.Building.Institutional;
 
 namespace UltimateCityBuildingSimulator.Game
 {
@@ -24,16 +27,21 @@ namespace UltimateCityBuildingSimulator.Game
             Buildings = new List<IBuildable>();
             PlayerTransactionProcessorTerminal = player.GetTransactionProcessor().GetTransactionProcessorTerminal();
             Builder = new Builder(this);
-            //PlayerTransactionProcessorTerminal.SetTransaction(100);
-            //Console.WriteLine(PlayerTransactionProcessorTerminal.GetTransaction());
-            //PlayerTransactionProcessorTerminal.AlterTransaction(-30);
-            //Console.WriteLine(PlayerTransactionProcessorTerminal.GetTransaction());
-
         }
-        public void Update(double deltaTime)
+        public void UpdateCity(double deltaTime)
         {
-            UpdateHappiness(deltaTime);
-            UpdatePopulation(deltaTime);
+            UpdateCapacity();
+            UpdateHappiness();
+            UpdatePopulation();
+            GenerateIncome(deltaTime);
+        }
+        public IEnumerable<IBuildable> GetBuildings()
+        {
+            return Buildings.AsReadOnly();
+        }
+        public bool ChargePlayer(int amount)
+        {
+            return PlayerTransactionProcessorTerminal.AlterTransaction(-1 * amount);
         }
         public BuildingCatalogue GetAvailableBuildings()
         {
@@ -46,25 +54,36 @@ namespace UltimateCityBuildingSimulator.Game
             UpdateCapacity();
             return true;
         }
-        public IEnumerable<IBuildable> GetBuildings()
+        private void UpdateCapacity()
         {
-            return Buildings.AsReadOnly();
+            int CountedCapacity = 0;
+            foreach (var buildable in Buildings)
+            {
+                if (buildable is Residential)
+                {
+                    CountedCapacity += ((Residential)buildable).Capacity;
+                }
+            }
+            Capacity = CountedCapacity;
+        }
+        private void UpdatePopulation()
+        {
+            Population = Math.Min(Capacity, (int)(Happiness * 0.75F));
+        }
+        private void UpdateHappiness() {
+            int CountedHappiness = 0;
+            foreach (var buildable in Buildings)
+            {
+                if (buildable is Institutional)
+                {
+                    CountedHappiness += ((Institutional)buildable).SatisfactionValue;
+                }
+            }
+            Happiness = CountedHappiness;
         }
         public bool ChargePlayer(int amount)
         {
-            return PlayerTransactionProcessorTerminal.AlterTransaction(-1 * amount);
-        }
-        private void UpdateCapacity()
-        {
-
-        }
-        private void UpdatePopulation(double deltaTime)
-        {
-
-        }
-        private void UpdateHappiness(double deltaTime)
-        {
-
+            return PlayerTransactionProcessorTerminal.AlterTransaction(-1*amount);
         }
     }
 }

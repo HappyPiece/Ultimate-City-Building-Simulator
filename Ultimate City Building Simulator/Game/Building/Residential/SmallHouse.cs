@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Residential
         public SmallHouse() : base()
         {
             Cost = 30;
+            Capacity = 10;
         }
     }
 }

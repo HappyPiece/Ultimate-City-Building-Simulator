@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Residential
         public MediumHouse() : base()
         {
             Cost = 90;
+            Capacity = 20;
         }
     }
 }

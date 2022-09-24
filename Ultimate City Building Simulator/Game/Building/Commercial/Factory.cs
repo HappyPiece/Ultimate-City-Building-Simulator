@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Commercial
         public Factory() : base()
         {
             Cost = 150;
+            Income = 3;
         }
     }
 }

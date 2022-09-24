@@ -8,6 +8,6 @@ namespace UltimateCityBuildingSimulator.Game.Building.Commercial
 {
     public abstract class Commercial : Building
     {
-        public int Income { get; private set; }
+        public int Income { get; protected set; }
     }
 }

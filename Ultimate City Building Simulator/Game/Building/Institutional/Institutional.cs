@@ -8,6 +8,6 @@ namespace UltimateCityBuildingSimulator.Game.Building.Institutional
 {
     public abstract class Institutional: Building
     {
-        public int SatisfactionValue { get; private set; }
+        public int SatisfactionValue { get; protected set; }
     }
 }
