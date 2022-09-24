@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Commercial
         public Shop() : base()
         {
             Cost = 50;
+            Income = 1;
         }
     }
 }

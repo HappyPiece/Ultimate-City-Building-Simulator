@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Institutional
         public Hospital() : base()
         {
             Cost = 270;
+            SatisfactionValue = 65;
         }
     }
 }

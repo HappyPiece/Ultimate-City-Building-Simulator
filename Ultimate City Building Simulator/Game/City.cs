@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using UltimateCityBuildingSimulator.Game.TransactionTypes;
 using UltimateCityBuildingSimulator.Game.Building;
 using static UltimateCityBuildingSimulator.Game.Builder;
+using UltimateCityBuildingSimulator.Game.Building.Commercial;
+using UltimateCityBuildingSimulator.Game.Building.Residential;
+using UltimateCityBuildingSimulator.Game.Building.Institutional;
 
 namespace UltimateCityBuildingSimulator.Game
 {
@@ -23,15 +26,47 @@ namespace UltimateCityBuildingSimulator.Game
             Buildings = new List<IBuildable>();
             PlayerTransactionProcessorTerminal = player.GetTransactionProcessor().GetTransactionProcessorTerminal();
             Builder = new Builder(this);
-            //PlayerTransactionProcessorTerminal.SetTransaction(100);
-            //Console.WriteLine(PlayerTransactionProcessorTerminal.GetTransaction());
-            //PlayerTransactionProcessorTerminal.AlterTransaction(-30);
-            //Console.WriteLine(PlayerTransactionProcessorTerminal.GetTransaction());
-
         }
-        public void UpdateCapacity() { throw new NotImplementedException(); }
-        public void UpdatePopulation() { throw new NotImplementedException(); }
-        public void UpdateHappiness() { throw new NotImplementedException(); }
+        public void UpdateCapacity()
+        {
+            int CountedCapacity = 0;
+            foreach (var buildable in Buildings)
+            {
+                if (buildable is Residential)
+                {
+                    CountedCapacity += ((Residential)buildable).Capacity;
+                }
+            }
+            Capacity = CountedCapacity;
+        }
+        public void UpdatePopulation()
+        {
+            Population = Math.Min(Capacity, (int)(Happiness * 0.75F));
+        }
+        public void UpdateHappiness() {
+            int CountedHappiness = 0;
+            foreach (var buildable in Buildings)
+            {
+                if (buildable is Institutional)
+                {
+                    CountedHappiness += ((Institutional)buildable).SatisfactionValue;
+                }
+            }
+            Happiness = CountedHappiness;
+        }
+        public void GenerateIncome(float deltaTime)
+        {
+            float BasePopulationIncomeMultiplier = 0.5F;
+            int IncomePerSecond = (int)(BasePopulationIncomeMultiplier * Population);
+            foreach (var buildable in Buildings)
+            {
+                if (buildable is Commercial)
+                {
+                    IncomePerSecond += ((Commercial)buildable).Income;
+                }
+            }
+            PlayerTransactionProcessorTerminal.AlterTransaction((int)(IncomePerSecond * deltaTime));
+        }
         public BuildingCatalogue GetAvailableBuildings()
         {
             return Builder.GetBuildingCatalogue();
@@ -48,7 +83,7 @@ namespace UltimateCityBuildingSimulator.Game
         }
         public bool ChargePlayer(int amount)
         {
-            return PlayerTransactionProcessorTerminal.AlterTransaction(-1*amount);
+            return PlayerTransactionProcessorTerminal.AlterTransaction(-1 * amount);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Institutional
         public School() : base()
         {
             Cost = 170;
+            SatisfactionValue = 40;
         }
     }
 }

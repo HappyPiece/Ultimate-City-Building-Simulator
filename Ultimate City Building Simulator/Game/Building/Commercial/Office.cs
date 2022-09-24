@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Commercial
         public Office() : base()
         {
             Cost = 100;
+            Income = 2;
         }
     }
 }

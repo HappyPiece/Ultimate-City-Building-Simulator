@@ -8,6 +8,6 @@ namespace UltimateCityBuildingSimulator.Game.Building.Residential
 {
     public abstract class Residential : Building
     {
-        public int Capacity { get; private set; }
+        public int Capacity { get; protected set; }
     }
 }

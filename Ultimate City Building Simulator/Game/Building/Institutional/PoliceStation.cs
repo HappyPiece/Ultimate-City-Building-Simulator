@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Institutional
         public PoliceStation() : base()
         {
             Cost = 70;
+            SatisfactionValue = 20;
         }
     }
 }

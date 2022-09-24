@@ -11,6 +11,7 @@ namespace UltimateCityBuildingSimulator.Game.Building.Residential
         public LargeHouse() : base()
         {
             Cost = 200;
+            Capacity = 50;
         }
     }
 }
