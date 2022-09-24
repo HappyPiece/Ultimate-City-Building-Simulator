@@ -10,6 +10,7 @@ namespace UltimateCityBuildingSimulator
     {
         void Write<T>(T message);
         void WriteLine<T>(T message);
+        void ClearBuffer();
         //void Start();
         //void Stop();
     }

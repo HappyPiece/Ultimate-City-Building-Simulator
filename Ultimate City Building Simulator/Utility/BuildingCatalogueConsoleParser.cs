@@ -11,7 +11,7 @@ namespace UltimateCityBuildingSimulator.Utility
     {
         public string Parse(BuildingCatalogue catalogue)
         {
-            var output = $"{"Тип здания",-25} {"Стоимость",-25}\n";
+            var output = $"{"Building Type",-25} {"Price",-25}\n";
             foreach (var item in catalogue.GetList())
             {
                 output += $"{item.Name,-25} {item.Price,-25}\n";

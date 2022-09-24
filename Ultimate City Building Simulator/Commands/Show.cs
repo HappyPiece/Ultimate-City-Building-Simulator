@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UltimateCityBuildingSimulator.Game.Building;
 using UltimateCityBuildingSimulator.Utility;
 using UltimateCityBuildingSimulator.Commands.Manager;
+using static UltimateCityBuildingSimulator.Game.City;
 
 namespace UltimateCityBuildingSimulator.Commands.Manager
 {
@@ -26,7 +27,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
                 case "balance":
                     var playerTerminal = app.Player.GetTransactionProcessor().GetTransactionProcessorTerminal();
                     var balance = playerTerminal.GetTransaction();
-                    Output.WriteLine(balance);
+                    Output.WriteLine(balance.ToString());
                     break;
                 case "map":
                     if (app.City.GetBuildings().Count() > 0)
@@ -40,7 +41,17 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
                     }
                     break;
                 case "stats":
-                    Output.WriteLine("Stats");
+                    CityStatistics stats = app.City.GetCityStatistics();
+                    Output.WriteLine("\nStatistics:");
+                    Output.WriteLine($"{"Population:",-15}{stats.Population}/{stats.Capacity}");
+                    Output.WriteLine($"{"Happiness:",-15}{stats.Happiness,-15}");
+                    Output.WriteLine($"\nCity Buildings:");
+                    Output.WriteLine($"{"Total:",-15}{stats.BuildingsTotal,-15}");
+                    Output.WriteLine($"{"Commercial:",-15}{stats.BuildingsCommercial,-15}");
+                    Output.WriteLine($"{"Institutional:",-15}{stats.BuildingsInstitutional,-15}");
+                    Output.WriteLine($"{"Residential:",-15}{stats.BuildingsResidential,-15}\n");
+                    Output.WriteLine($"{"Income:",-15}{stats.Income}/s");
+
                     break;
                 case "catalogue":
                     var catalogue = app.City.GetAvailableBuildings();

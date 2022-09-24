@@ -15,7 +15,7 @@ namespace UltimateCityBuildingSimulator
         //~ConsoleInputReader()
         //{
         //    IsRunning = false;
-        //}
+        //}        
         public string GetInput()
         {
             return Console.ReadLine() ?? "";

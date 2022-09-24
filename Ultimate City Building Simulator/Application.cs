@@ -17,15 +17,15 @@ namespace UltimateCityBuildingSimulator
         private Thread UpdateThread;
         private ICommandManager CommandManager;
         private TimeManager Timer;
-        private IOutputWriter Output;
+        //private IOutputWriter Output;
         public Application()
         {
             CommandManager = new ConsoleCommandManager(this);
-            Output = new ConsoleOutputWriter();
+            //Output = new ConsoleOutputWriter();
             Player = new Player();
             City = new City(Player);
             UpdateThread = new Thread(Update);
-            Timer = new TimeManager();
+            Timer = new TimeManager();            
         }
         public void Start()
         {
@@ -36,7 +36,7 @@ namespace UltimateCityBuildingSimulator
         }
 
         public void Quit()
-        {            
+        {
             IsRunning = false;
             CommandManager.StopCommandProcessing();
             UpdateThread.Join();
@@ -46,8 +46,8 @@ namespace UltimateCityBuildingSimulator
             while (IsRunning)
             {
                 City.UpdateCity(Timer.elapsed);
-                Thread.Sleep(500);
                 Timer.NewTick();
+                Thread.Sleep(500);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         private List<ConsoleCommand> Commands;
         private IInputReader InputReader;
         private Thread InputProcessingThread;
-        private bool IsRunning;        
+        private bool IsRunning;
 
         public ConsoleCommandManager(Application app)
         {
@@ -29,6 +29,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
             Commands.Add(new Print(this));
             Commands.Add(new Show(this));
             Commands.Add(new Build(this));
+            Commands.Add(new Clear(this));
 
             //Feed to processor
             Processor = new ConsoleCommandProcessor(Commands);
