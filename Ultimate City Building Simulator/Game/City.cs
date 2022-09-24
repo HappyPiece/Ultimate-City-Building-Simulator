@@ -17,6 +17,7 @@ namespace UltimateCityBuildingSimulator.Game // niggers
         public int Capacity { get; private set; }
         public int Population { get; private set; }
         public float Happiness { get; private set; }
+
         private ITransactionProcessorTerminal PlayerTransactionProcessorTerminal;
         private Builder Builder;
 
@@ -50,6 +51,7 @@ namespace UltimateCityBuildingSimulator.Game // niggers
         {
             if (!Builder.RequestBuildingToBuild(buildable, out IBuildable building, out response)) return false;
             Buildings.Add(building);
+            UpdateCapacity();
             return true;
         }
         private void UpdateCapacity()
@@ -79,18 +81,9 @@ namespace UltimateCityBuildingSimulator.Game // niggers
             }
             Happiness = CountedHappiness;
         }
-        private void GenerateIncome(double deltaTime)
+        public bool ChargePlayer(int amount)
         {
-            float BasePopulationIncomeMultiplier = 0.5F;
-            int IncomePerSecond = (int)(BasePopulationIncomeMultiplier * Population);
-            foreach (var buildable in Buildings)
-            {
-                if (buildable is Commercial)
-                {
-                    IncomePerSecond += ((Commercial)buildable).Income;
-                }
-            }
-            PlayerTransactionProcessorTerminal.AlterTransaction((int)(IncomePerSecond * deltaTime));
+            return PlayerTransactionProcessorTerminal.AlterTransaction(-1*amount);
         }
     }
 }

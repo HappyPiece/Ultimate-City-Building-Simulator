@@ -26,25 +26,25 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
                 case "balance":
                     var playerTerminal = app.Player.GetTransactionProcessor().GetTransactionProcessorTerminal();
                     var balance = playerTerminal.GetTransaction();
-                    Console.WriteLine(balance);
+                    Output.WriteLine(balance);
                     break;
                 case "map":
                     if (app.City.GetBuildings().Count() > 0)
                     {
                         foreach (var building in app.City.GetBuildings())
-                            Console.WriteLine(building.GetType().Name.ToString().ToLower());
+                            Output.WriteLine(building.GetType().Name.ToString().ToLower());
                     }
                     else
                     {
-                        Console.WriteLine("There are no building in the City");
+                        Output.WriteLine("There are no building in the City");
                     }
                     break;
                 case "stats":
-                    Console.WriteLine("Stats");
+                    Output.WriteLine("Stats");
                     break;
                 case "catalogue":
                     var catalogue = app.City.GetAvailableBuildings();
-                    Console.WriteLine(ParentManager.CatalogueParser.Parse(catalogue));
+                    Output.WriteLine(ParentManager.CatalogueParser.Parse(catalogue));
                     break;
                 default: return false;
             }
