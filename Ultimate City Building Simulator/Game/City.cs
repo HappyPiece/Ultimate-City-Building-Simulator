@@ -14,6 +14,7 @@ namespace UltimateCityBuildingSimulator.Game
         public int Capacity { get; private set; }
         public int Population { get; private set; }
         public float Happiness { get; private set; }
+
         private ITransactionProcessorTerminal PlayerTransactionProcessorTerminal;
         private Builder Builder;
 
@@ -29,9 +30,11 @@ namespace UltimateCityBuildingSimulator.Game
             //Console.WriteLine(PlayerTransactionProcessorTerminal.GetTransaction());
 
         }
-        public void UpdateCapacity() { throw new NotImplementedException(); }
-        public void UpdatePopulation() { throw new NotImplementedException(); }
-        public void UpdateHappiness() { throw new NotImplementedException(); }
+        public void Update(double deltaTime)
+        {
+            UpdateHappiness(deltaTime);
+            UpdatePopulation(deltaTime);
+        }
         public BuildingCatalogue GetAvailableBuildings()
         {
             return Builder.GetBuildingCatalogue();
@@ -40,6 +43,7 @@ namespace UltimateCityBuildingSimulator.Game
         {
             if (!Builder.RequestBuildingToBuild(buildable, out IBuildable building, out response)) return false;
             Buildings.Add(building);
+            UpdateCapacity();
             return true;
         }
         public IEnumerable<IBuildable> GetBuildings()
@@ -48,7 +52,19 @@ namespace UltimateCityBuildingSimulator.Game
         }
         public bool ChargePlayer(int amount)
         {
-            return PlayerTransactionProcessorTerminal.AlterTransaction(-1*amount);
+            return PlayerTransactionProcessorTerminal.AlterTransaction(-1 * amount);
+        }
+        private void UpdateCapacity()
+        {
+
+        }
+        private void UpdatePopulation(double deltaTime)
+        {
+
+        }
+        private void UpdateHappiness(double deltaTime)
+        {
+
         }
     }
 }

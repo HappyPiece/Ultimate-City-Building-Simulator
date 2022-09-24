@@ -9,13 +9,13 @@ namespace UltimateCityBuildingSimulator
     internal class ConsoleInputReader : IInputReader
     {
         private string Input = String.Empty;
-        private bool IsRead = false;
-        private bool IsRunning;
+        //private bool IsRead = false;
+        //private bool IsRunning;
 
-        ~ConsoleInputReader()
-        {
-            IsRunning = false;
-        }
+        //~ConsoleInputReader()
+        //{
+        //    IsRunning = false;
+        //}
         public string GetInput()
         {
             return Console.ReadLine() ?? "";

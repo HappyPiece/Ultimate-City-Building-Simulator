@@ -17,7 +17,7 @@ namespace UltimateCityBuildingSimulator.Utility
 
             return string.Join("\n", items).ToLower();
         }
-
+        /*
         public static bool TryParseStringToBuilding(string input, IEnumerable<IBuildable> buildables, out IBuildable building)
         {
             building = null;
@@ -33,5 +33,6 @@ namespace UltimateCityBuildingSimulator.Utility
             }
             return false;
         }
+        */
     }
 }

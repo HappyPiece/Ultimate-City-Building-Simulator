@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,28 +11,32 @@ namespace UltimateCityBuildingSimulator
 {
     public class Application
     {
-        private bool IsRunning;
-        private Thread UpdateThread;
         public Player Player { get; private set; }
         public City City { get; private set; }
-        ICommandManager CommandManager;
+        private bool IsRunning;
+        private Thread UpdateThread;
+        private ICommandManager CommandManager;
+        private TimeManager Timer;
+        private IOutputWriter Output;
         public Application()
         {
             CommandManager = new ConsoleCommandManager(this);
+            Output = new ConsoleOutputWriter();
             Player = new Player();
             City = new City(Player);
             UpdateThread = new Thread(Update);
+            Timer = new TimeManager();
         }
         public void Start()
         {
             IsRunning = true;
             CommandManager.StartCommandProcessing();
             UpdateThread.Start();
+            Timer.Start();
         }
 
         public void Quit()
-        {
-            Console.WriteLine("Quitting");
+        {            
             IsRunning = false;
             CommandManager.StopCommandProcessing();
             UpdateThread.Join();
@@ -40,8 +45,9 @@ namespace UltimateCityBuildingSimulator
         {
             while (IsRunning)
             {
-                //City.Update();
+                City.Update(Timer.elapsed);
                 Thread.Sleep(500);
+                Timer.NewTick();
             }
         }
     }

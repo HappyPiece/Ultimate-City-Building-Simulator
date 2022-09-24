@@ -28,7 +28,7 @@ namespace UltimateCityBuildingSimulator.Commands
             if (args[0] == "list")
             {
                 var catalogue = city.GetAvailableBuildings();
-                Console.WriteLine(ParentManager.CatalogueParser.Parse(catalogue));
+                Output.WriteLine(ParentManager.CatalogueParser.Parse(catalogue));
             }
             else
             {
@@ -36,10 +36,10 @@ namespace UltimateCityBuildingSimulator.Commands
                 if (!catalogue.RequestItemByName(args[0], out Item item)) return false;
                 if (!city.TryBuildBuilding(item.Building, out BuildRequestResponse response))
                 {
-                    Console.WriteLine(response.ToString());
+                    Output.WriteLine(response.ToString());
                     return false;
                 }
-                Console.WriteLine("Buliding successfuly built");
+                Output.WriteLine("Buliding successfuly built");
             }
             return true;
         }

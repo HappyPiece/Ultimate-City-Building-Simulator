@@ -17,6 +17,7 @@ namespace UltimateCityBuildingSimulator.Commands
         public override bool Process(string[] args)
         {
             if (args.Length != 0) return false;
+            Output.WriteLine("Quitting");
             ParentManager.ParentApplication.Quit();
             return true;
         }

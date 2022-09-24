@@ -17,7 +17,7 @@ namespace UltimateCityBuildingSimulator.Commands
         public override bool Process(string[] args)
         {
             if (args.Length <= 0) return false;
-            Console.WriteLine(String.Join(' ', args));
+            Output.WriteLine(String.Join(' ', args));
             return true;
         }
     }
