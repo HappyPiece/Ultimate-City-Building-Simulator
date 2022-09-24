@@ -10,7 +10,7 @@ using UltimateCityBuildingSimulator.Game.Building.Commercial;
 using UltimateCityBuildingSimulator.Game.Building.Residential;
 using UltimateCityBuildingSimulator.Game.Building.Institutional;
 
-namespace UltimateCityBuildingSimulator.Game
+namespace UltimateCityBuildingSimulator.Game // niggers
 {
     public class City
     {
