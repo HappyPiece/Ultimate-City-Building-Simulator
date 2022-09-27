@@ -16,13 +16,6 @@ namespace UltimateCityBuildingSimulator.Game
 
         private Showcase Showcase;
 
-        public enum BuildRequestResponse //
-        {
-            Success,
-            InsufficientFunds,
-            UnspecifiedFailure
-        }
-
         public Builder(City city)
         {
             AssignedCity = city;
@@ -78,6 +71,12 @@ namespace UltimateCityBuildingSimulator.Game
             }
 
             return catalogue;
+        }
+        public enum BuildRequestResponse //
+        {
+            Success,
+            InsufficientFunds,
+            UnspecifiedFailure
         }
     }
 }

@@ -12,11 +12,10 @@ namespace UltimateCityBuildingSimulator
         protected string CommandWord = string.Empty;
         protected string Help = string.Empty;
         protected ConsoleCommandManager ParentManager;
-        public IOutputWriter Output { get; protected set; }
+        protected IOutputWriter Output { get { return ParentManager.Output; } }
         public ConsoleCommand(ConsoleCommandManager manager)
         {
             ParentManager = manager;
-            Output = new ConsoleOutputWriter();
         }
 
         public string GetCommandName() { return CommandWord; }

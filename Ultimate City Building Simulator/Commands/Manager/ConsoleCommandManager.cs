@@ -10,9 +10,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
 {
     public class ConsoleCommandManager : CommandManager
     {
-        private ConsoleCommandProcessor Processor;
-        private List<ConsoleCommand> Commands;
-        private IInputReader InputReader;
+        private ConsoleCommandProcessor Processor;        
         private Thread InputProcessingThread;
         private bool IsRunning;
 
@@ -20,10 +18,12 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         {
             InputReader = new ConsoleInputReader();
             InputProcessingThread = new Thread(Update);
-            Commands = new List<ConsoleCommand>();
             CatalogueParser = new BuildingCatalogueConsoleParser();
             ParentApplication = app;
             AmogusManager = new ConsoleAmogusManager();
+            Output = new ConsoleOutputWriter();
+
+            List<ConsoleCommand> Commands = new List<ConsoleCommand>();
 
             //Initialise all commands
             Commands.Add(new Quit(this));

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UltimateCityBuildingSimulator
 {
-    internal interface IInputReader
+    public interface IInputReader
     {
         //void Start();
         string GetInput();

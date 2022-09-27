@@ -11,9 +11,10 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
     {
         public Application ParentApplication { get; protected set; }
         public IOutputWriter Output { get; protected set; }
-        public abstract void ProcessInput(string input);
+        protected IInputReader InputReader;
         public IBuildingCatalogueParser CatalogueParser { get; protected set; }
-        public IAmogusManager AmogusManager { get; protected set;}
+        public IAmogusManager AmogusManager { get; protected set; }
+        public abstract void ProcessInput(string input);
         public abstract void StartCommandProcessing();
         public abstract void StopCommandProcessing();
     }
