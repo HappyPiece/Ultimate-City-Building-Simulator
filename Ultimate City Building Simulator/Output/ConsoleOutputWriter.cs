@@ -12,7 +12,11 @@ namespace UltimateCityBuildingSimulator
         public ConsoleOutputWriter()
         {
             Console.OutputEncoding = Encoding.Unicode;
-            ConsoleHelper.SetCurrentFont("Cascadia Code", 25);
+            SetFont("Cascadia Code", 25);
+        }
+        public void SetFont(string fontName, short fontSize)
+        {
+            ConsoleHelper.SetCurrentFont(fontName, fontSize);
         }
         public void Write<T>(T message)
         {

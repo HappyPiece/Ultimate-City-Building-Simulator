@@ -57,7 +57,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         {
             IsRunning = false;
         }
-        public IEnumerable<IConsoleCommand> GetCommands()
+        public IEnumerable<ICommand> GetCommands()
         {
             return Processor.GetAvailableCommands();
         }

@@ -8,9 +8,9 @@ namespace UltimateCityBuildingSimulator
 {
     internal class ConsoleCommandProcessor
     {
-        private readonly IEnumerable<IConsoleCommand> Commands;
+        private readonly IEnumerable<ICommand> Commands;
 
-        public ConsoleCommandProcessor(IEnumerable<IConsoleCommand> commands)
+        public ConsoleCommandProcessor(IEnumerable<ICommand> commands)
         {
             this.Commands = commands;
         }
@@ -42,7 +42,7 @@ namespace UltimateCityBuildingSimulator
             }
             Console.WriteLine("Unrecognised command " + commandInfo.Name);
         }
-        public IEnumerable<IConsoleCommand> GetAvailableCommands()
+        public IEnumerable<ICommand> GetAvailableCommands()
         {
             return Commands;
         }

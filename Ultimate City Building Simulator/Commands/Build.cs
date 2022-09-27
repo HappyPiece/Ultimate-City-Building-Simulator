@@ -37,7 +37,7 @@ namespace UltimateCityBuildingSimulator.Commands
                 if (!city.TryBuildBuilding(item.Building, out BuildRequestResponse response))
                 {
                     Output.WriteLine(response.ToString());
-                    return false;
+                    return true;
                 }
                 Output.WriteLine("Buliding successfuly built");
             }

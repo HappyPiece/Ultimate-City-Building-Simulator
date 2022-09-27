@@ -7,7 +7,7 @@ using UltimateCityBuildingSimulator.Commands.Manager;
 
 namespace UltimateCityBuildingSimulator
 {
-    public abstract class ConsoleCommand : IConsoleCommand
+    public abstract class ConsoleCommand : ICommand
     {
         protected string CommandWord = string.Empty;
         protected string Help = string.Empty;
