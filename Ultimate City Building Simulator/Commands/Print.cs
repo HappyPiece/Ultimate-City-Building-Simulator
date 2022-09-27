@@ -13,19 +13,16 @@ namespace UltimateCityBuildingSimulator.Commands
         public Print(ConsoleCommandManager manager) : base(manager)
         {
             CommandWord = "print";
-            Help = "print [text] - prints text to console";
+            Help = "Use: print [text] - prints text to console";
         }
         public override bool Process(string[] args)
         {
             if (args.Length <= 0) return false;
-            if (args.Length == 1 && args[0] == "amogus")
+            if (args[0] == "amogus")
             {
-                Output.WriteLine(AmogusManager.bigMogus);
-                return true;
-            }
-            else if (args.Length == 2 && args[0] == "amogus" && args[1] == "sus")
-            {
-                Output.WriteLine(AmogusManager.susMogus);
+                var seed = String.Join(" ", args.Skip(1));
+                var mogus = ParentManager.AmogusManager.RetrieveAmogus(seed);
+                Output.WriteLine(mogus);
                 return true;
             }
             Output.WriteLine(String.Join(' ', args));

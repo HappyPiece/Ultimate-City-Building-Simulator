@@ -20,7 +20,7 @@ namespace UltimateCityBuildingSimulator
         }
 
         public string GetCommandName() { return CommandWord; }
-        public string GetCommandHelp() { return Help + "\n"; }
+        public string GetCommandHelp() { return Help; }
 
         public abstract bool Process(string[] args);
     }

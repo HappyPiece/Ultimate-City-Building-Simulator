@@ -23,6 +23,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
             Commands = new List<ConsoleCommand>();
             CatalogueParser = new BuildingCatalogueConsoleParser();
             ParentApplication = app;
+            AmogusManager = new ConsoleAmogusManager();
 
             //Initialise all commands
             Commands.Add(new Quit(this));
@@ -30,6 +31,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
             Commands.Add(new Show(this));
             Commands.Add(new Build(this));
             Commands.Add(new Clear(this));
+            Commands.Add(new Help(this));
 
             //Feed to processor
             Processor = new ConsoleCommandProcessor(Commands);
@@ -38,7 +40,7 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         ~ConsoleCommandManager()
         {
             InputProcessingThread.Join();
-        }
+        }        
 
         public override void ProcessInput(string input)
         {
@@ -54,6 +56,10 @@ namespace UltimateCityBuildingSimulator.Commands.Manager
         public override void StopCommandProcessing()
         {
             IsRunning = false;
+        }
+        public IEnumerable<IConsoleCommand> GetCommands()
+        {
+            return Processor.GetAvailableCommands();
         }
         private void Update()
         {

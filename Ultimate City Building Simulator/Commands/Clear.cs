@@ -12,6 +12,7 @@ namespace UltimateCityBuildingSimulator.Commands
         public Clear(ConsoleCommandManager manager) : base(manager)
         {
             CommandWord = "clear";
+            Help = "Use: clear - clears console";
         }
         public override bool Process(string[] args)
         {

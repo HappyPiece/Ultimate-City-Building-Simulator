@@ -42,11 +42,16 @@ namespace UltimateCityBuildingSimulator
             }
             Console.WriteLine("Unrecognised command " + commandInfo.Name);
         }
+        public IEnumerable<IConsoleCommand> GetAvailableCommands()
+        {
+            return Commands;
+        }
         public struct CommandInfo
         {
             public CommandInfo(string command, string[] args) { Name = command; Arguments = args; }
             public string Name;
             public string[] Arguments;
+            //public DateTime Time;
         }
     }
 }
